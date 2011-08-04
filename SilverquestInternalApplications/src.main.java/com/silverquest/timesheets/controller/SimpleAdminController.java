@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -22,6 +23,10 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import com.silverquest.timesheets.command.CreateConsultantCommand;
 import com.silverquest.timesheets.command.FileUploadBean;
+import com.silverquest.timesheets.dto.CompanyDetailsDto;
+import com.silverquest.timesheets.dto.CompanyDto;
+import com.silverquest.timesheets.dto.CompanyType;
+import com.silverquest.timesheets.service.CompanyService;
 import com.silverquest.timesheets.service.ConsultantService;
 import com.silverquest.timesheets.service.util.CSVDataUploaderUtil;
 
@@ -31,6 +36,10 @@ public class SimpleAdminController extends MultiActionController implements
 
 	@Autowired
 	private ConsultantService consultantService;
+
+	@Autowired CompanyService companyService;
+
+
 
 	@Autowired
 	CSVDataUploaderUtil csvDataUploaderUtil;
@@ -44,8 +53,22 @@ public class SimpleAdminController extends MultiActionController implements
 
 		Map model = new HashMap();
 		model.put("now", now);
+		
+		List<CompanyDetailsDto> companies = getListOfCompanies();
+		if( companies != null ){
+			model.put("companies", companies);
+		}
+		
+		
 		request.setAttribute("model", model);
 		return new ModelAndView("simple-admin-view", model);
+	}
+	
+	
+	private List<CompanyDetailsDto> getListOfCompanies(){
+		
+		return companyService.getListOfCompanies(CompanyType.CLIENT_COMPANY.toString());
+		
 	}
 
 	@RequestMapping(value = "/simple-admin/createTestData", method = RequestMethod.POST)
@@ -72,8 +95,8 @@ public class SimpleAdminController extends MultiActionController implements
 		return new ModelAndView("simple-admin-view", model);
 	}
 
-	@RequestMapping("/simple-admin/save")
-	public ModelAndView save(HttpServletRequest request,
+	@RequestMapping("/simple-admin/saveconsultant.htm")
+	public ModelAndView saveconsultant(HttpServletRequest request,
 			HttpServletResponse response, CreateConsultantCommand command)
 			throws ServletException, IOException {
 
@@ -91,6 +114,23 @@ public class SimpleAdminController extends MultiActionController implements
 		request.setAttribute("model", model);
 		return new ModelAndView("simple-admin-view", model);
 	}
+	
+	
+	@RequestMapping("/simple-admin/savecompany.htm")
+	public ModelAndView savecompany(HttpServletRequest request,
+			HttpServletResponse response, CompanyDto command)
+			throws ServletException, IOException {
+
+		// / NB - TEST THIS !!!!!!!!!!!!!!!!!!
+		companyService.save(command);
+
+		Map model = new HashMap();
+
+		model.put("message", "Saved");
+		request.setAttribute("model", model);
+		return new ModelAndView("simple-admin-view", model);
+	}
+	
 
 	public ConsultantService getConsultantService() {
 		return consultantService;
@@ -113,6 +153,9 @@ public class SimpleAdminController extends MultiActionController implements
 		if (csvDataUploaderUtil == null) {
 			System.out.println("ERROR !!!! -  csvDataUploaderUtil is null");
 		}
+		if( companyService == null ){
+			System.out.println("CompanyService is null from SimpleAdminController");
+		}
 	}
 
 	public CSVDataUploaderUtil getCsvDataUploaderUtil() {
@@ -121,6 +164,14 @@ public class SimpleAdminController extends MultiActionController implements
 
 	public void setCsvDataUploaderUtil(CSVDataUploaderUtil csvDataUploaderUtil) {
 		this.csvDataUploaderUtil = csvDataUploaderUtil;
+	}
+	
+	public CompanyService getCompanyService() {
+		return companyService;
+	}
+
+	public void setCompanyService(CompanyService companyService) {
+		this.companyService = companyService;
 	}
 
 }

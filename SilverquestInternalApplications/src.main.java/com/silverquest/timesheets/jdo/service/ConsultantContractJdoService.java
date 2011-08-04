@@ -8,6 +8,6 @@ public interface ConsultantContractJdoService {
 	
 	public ConsultantContractDto findCurrentConsultantContract(String userId);
 	
-
+	public ConsultantContractDto save(ConsultantContractDto dto);
 	
 }

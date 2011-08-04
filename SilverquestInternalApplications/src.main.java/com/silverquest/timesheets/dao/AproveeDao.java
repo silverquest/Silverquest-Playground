@@ -9,7 +9,7 @@ import com.silverquest.timesheets.dto.CompanyType;
 
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
-public class AproveeDao extends UserDao {
+public class AproveeDao extends EmployeeDao {
 
 	@Persistent
 	private CompanyType type;
@@ -22,7 +22,6 @@ public class AproveeDao extends UserDao {
 		super.setFirstName(dto.getFirstName());
 		super.setLastName(dto.getLastName());
 		super.setMiddleName(dto.getMiddleName());
-		super.setCompanyId(dto.getCompanyId());
 		super.setCompanyType(dto.getCompanyType());
 		super.setRoles(dto.getRoles());
 		super.setContactDetails(dto.getContactDetails());
@@ -37,7 +36,6 @@ public class AproveeDao extends UserDao {
 		dto.setFirstName(super.getFirstName());
 		dto.setLastName(super.getLastName());
 		dto.setMiddleName(super.getMiddleName());
-		dto.setCompanyId(super.getCompanyId());
 		dto.setCompanyType(super.getCompanyType());
 		dto.setRoles(super.getRoles());
 		dto.setContactDetails(super.getContactDetails());

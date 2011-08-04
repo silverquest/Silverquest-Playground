@@ -11,7 +11,7 @@ import javax.jdo.annotations.Persistent;
 import com.silverquest.timesheets.dto.ConsultantDto;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
-public class ConsultantDao extends UserDao implements Serializable {
+public class ConsultantDao extends EmployeeDao implements Serializable {
 
 	private static final long serialVersionUID = 5034233204705352344L;
 
@@ -42,7 +42,6 @@ public class ConsultantDao extends UserDao implements Serializable {
 	  super.setFirstName( dto.getFirstName() );
 	  super.setLastName ( dto.getLastName() );
 	  super.setMiddleName (  dto.getMiddleName());
-	  super.setCompanyId (  dto.getCompanyId());
 	  super.setCompanyType ( dto.getCompanyType());
 	  super.setRoles ( dto.getRoles());
 	  super.setContactDetails(  dto.getContactDetails());
@@ -64,11 +63,9 @@ public class ConsultantDao extends UserDao implements Serializable {
 		dto.setFirstName(super.getFirstName());
 		dto.setLastName(super.getLastName());
 		dto.setMiddleName(super.getMiddleName());
-		dto.setCompanyId(super.getCompanyId());
 		dto.setCompanyType(super.getCompanyType());
 		dto.setRoles(super.getRoles());
 		dto.setContactDetails(super.getContactDetails());
-
 		dto.setDateOfBirth(dateOfBirth);
 		dto.setJobTitle(jobTitle);
 		dto.setUserId(super.getUserId());

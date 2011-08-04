@@ -1,6 +1,6 @@
 package com.silverquest.timesheets.dto;
 
-public class AproveeDto extends UserDto{
+public class AproveeDto extends EmployeeDto{
 
 	private CompanyType type;
 	

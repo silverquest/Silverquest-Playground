@@ -1,6 +1,7 @@
 package com.silverquest.timesheets.dto;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
@@ -16,8 +17,8 @@ public class CompanyDto implements Serializable, IsSerializable{
 	private String companyName;
 	private AddressDto address;
 	private CompanyType type;
+	private Set<String> employeeIds;
 	
-
 	public CompanyDto(){
 		
 	}
@@ -52,6 +53,14 @@ public class CompanyDto implements Serializable, IsSerializable{
 
 	public void setType(CompanyType type) {
 		this.type = type;
+	}
+	
+	public Set<String> getEmployeeIds() {
+		return employeeIds;
+	}
+
+	public void setEmployeeIds(Set<String> employeeIds) {
+		this.employeeIds = employeeIds;
 	}
 	
 

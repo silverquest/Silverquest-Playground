@@ -11,6 +11,6 @@ public class TableName {
   public static final String CONSULTANT_CONTRACT_TABLE		 = packageName + "ConsultantContractDao";
   public static final String CONSULTANT_TABLE				 = packageName + "ConsultantDao";
   public static final String TIME_SHEET_TABLE				 = packageName + "TimeSheetDao";
-  public static final String USER_TABLE						 = packageName + "UserDao";
+  public static final String USER_TABLE						 = packageName + "EmployeeDao";
 	
 }

@@ -1,6 +1,7 @@
 package com.silverquest.timesheets.dao;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.jdo.annotations.Embedded;
 import javax.jdo.annotations.Extension;
@@ -10,6 +11,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import com.silverquest.timesheets.dto.CompanyDetailsDto;
 import com.silverquest.timesheets.dto.CompanyDto;
 import com.silverquest.timesheets.dto.CompanyType;
 
@@ -27,29 +29,34 @@ public class CompanyDao implements Serializable {
 	@Persistent
 	private AddressDao address;
 	@Persistent
-	private CompanyType type; 
-	
+	private CompanyType type;
+	@Persistent
+	private Set<String> employeeIds;
 
-
-	public CompanyDao(){
-	  address = new AddressDao();
+	public CompanyDao(CompanyDto dto) {
+		id = dto.getId();
+		companyName = dto.getCompanyName();
+		address = new AddressDao(dto.getAddress());
+		type = dto.getType();
+		employeeIds = dto.getEmployeeIds();
 	}
 
-	public CompanyDao(CompanyDto dto){
-	  id = dto.getId();
-	  companyName = dto.getCompanyName();
-	  address = new AddressDao(dto.getAddress());
-	  type = dto.getType();
+	public CompanyDto toDto() {
+		CompanyDto clientDto = new CompanyDto();
+		clientDto.setId(id);
+		clientDto.setCompanyName(companyName);
+		clientDto.setAddress(address.toDto());
+		clientDto.setType(type);
+		clientDto.setEmployeeIds(employeeIds);
+		return clientDto;
+
 	}
-	
-	public CompanyDto toDto(){
-	  CompanyDto clientDto = new CompanyDto();
-	  clientDto.setId(id);
-	  clientDto.setCompanyName(companyName);
-	  clientDto.setAddress(address.toDto());
-	  clientDto.setType(type);
-	  return clientDto;
-	  
+
+	public CompanyDetailsDto toDetailsDto() {
+		CompanyDetailsDto companyDto = new CompanyDetailsDto();
+		companyDto.setId(id);
+		companyDto.setCompanyName(companyName);
+		return companyDto;
 	}
 
 	public String getCompanyName() {
@@ -71,8 +78,7 @@ public class CompanyDao implements Serializable {
 	public String getId() {
 		return id;
 	}
-	
-	
+
 	public CompanyType getType() {
 		return type;
 	}
@@ -80,7 +86,17 @@ public class CompanyDao implements Serializable {
 	public void setType(CompanyType type) {
 		this.type = type;
 	}
-	
-	
+
+	public Set<String> getEmployeeIds() {
+		return employeeIds;
+	}
+
+	public void setEmployeeIds(Set<String> employeeIds) {
+		this.employeeIds = employeeIds;
+	}
+
+	public CompanyDao() {
+		address = new AddressDao();
+	}
 
 }
