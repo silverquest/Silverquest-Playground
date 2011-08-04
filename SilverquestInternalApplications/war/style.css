@@ -1,0 +1,28 @@
+
+h1{
+	
+	color: navy;
+	text-align: center;
+  	
+}
+
+ul
+{
+list-style-type: none;
+padding: 5px;
+margin: 5px;
+}
+li
+{
+padding: 5px;
+
+
+}
+
+#createUser ul li span { 
+        float: left;
+        width: 100px;
+        text-align:right;
+        padding-right: 5px;
+}
+

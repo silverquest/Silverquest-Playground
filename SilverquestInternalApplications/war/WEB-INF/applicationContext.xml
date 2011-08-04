@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+    "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+
+
+	<bean id="testWiring" class="com.silverquest.timesheets.service.impl.TestWiringImpl">
+	</bean>
+
+	<bean id="consultantContractJdoService"
+		class="com.silverquest.timesheets.jdo.service.impl.ConsultantContractJdoServiceImpl" />
+
+	<bean id="consultantJdoService"
+		class="com.silverquest.timesheets.jdo.service.impl.ConsultantJdoServiceImpl">
+	</bean>
+
+	<bean id="consultantService"
+		class="com.silverquest.timesheets.service.impl.ConsultantServiceImpl"
+		parent="consultantJdoService" />
+
+	<bean id="companyJdoService" class="com.silverquest.timesheets.jdo.service.impl.CompanyJdoServiceImpl"/>
+	
+	<bean id="companyService"
+	  class="com.silverquest.timesheets.service.impl.CompanyServiceImpl" parent="companyJdoService"/>
+
+  	<bean id="timeSheetJdoService" 
+  	class="com.silverquest.timesheets.jdo.service.impl.TimeSheetJdoServiceImpl"/>
+
+	<bean id="timeSheetService" class="com.silverquest.timesheets.service.impl.TimeSheetServiceImpl" parent="timeSheetJdoService">
+	  <property name="companyService">
+	    <ref bean="companyService"/>
+	  </property>
+	  <property name="consultantService">
+	    <ref bean="consultantService"/>
+	  </property>
+	</bean>
+	
+	<bean id="csvDataUploaderUtil" class="com.silverquest.timesheets.service.util.impl.CSVDataUploaderUtilImpl"/>
+
+</beans>
