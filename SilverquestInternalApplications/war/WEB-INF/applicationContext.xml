@@ -5,10 +5,6 @@
 <beans>
 
 
-
-	<bean id="testWiring" class="com.silverquest.timesheets.service.impl.TestWiringImpl">
-	</bean>
-
 	<bean id="consultantContractJdoService"
 		class="com.silverquest.timesheets.jdo.service.impl.ConsultantContractJdoServiceImpl" />
 
