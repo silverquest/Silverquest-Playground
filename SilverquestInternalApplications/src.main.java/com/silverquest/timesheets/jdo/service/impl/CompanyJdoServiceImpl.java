@@ -2,22 +2,23 @@ package com.silverquest.timesheets.jdo.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
-
 import com.silverquest.timesheets.PMF;
 import com.silverquest.timesheets.dao.CompanyDao;
 import com.silverquest.timesheets.dto.CompanyDetailsDto;
 import com.silverquest.timesheets.dto.CompanyDto;
 import com.silverquest.timesheets.jdo.service.CompanyJdoService;
-//import  org.apache.log4j.Logger;
-
+import com.silverquest.timesheets.jdo.service.AppUserJdoService;
 
 public class CompanyJdoServiceImpl implements CompanyJdoService {
-	
-	
-	private final static String SELECT_COMPANIES_BY_TYPE = "SELECT from " + CompanyDao.class.getName() + " WHERE type==:companyType";
+
+	// Find all companies by type
+	private final static String SELECT_COMPANIES_BY_TYPE = "SELECT from "
+			+ CompanyDao.class.getName() + " WHERE type==:companyType";
+
+	//
+	private AppUserJdoService appUserJdoService;
 
 	/**
 	 * 
@@ -38,38 +39,54 @@ public class CompanyJdoServiceImpl implements CompanyJdoService {
 		} finally {
 			pm.close();
 		}
+
 		if (companyDao != null) {
 			return companyDao.toDto();
 		}
+
 		return null;
 
 	}
-	
+
+	/**
+	 * 
+	 */
+
+
 	@SuppressWarnings("unchecked")
-	public List<CompanyDetailsDto> getListOfCompanies(String companyType){
-		
+	public List<CompanyDetailsDto> findCompaniesByType(String companyType) {
+
 		PersistenceManager pm = PMF.get().getPersistenceManager();
+
 		List<CompanyDetailsDto> companyDetails = new ArrayList<CompanyDetailsDto>();
 
 		try {
-		  
-		   Query query = pm.newQuery(SELECT_COMPANIES_BY_TYPE);
-		   List<CompanyDao> daos = ( List<CompanyDao> ) query.execute(companyType);
-		   
-		   if( daos != null ){
-			   for( CompanyDao dao : daos ){
-				 companyDetails.add(dao.toDetailsDto());
-			   }
-		   }
+
+			Query query = pm.newQuery(SELECT_COMPANIES_BY_TYPE);
+			List<CompanyDao> daos = (List<CompanyDao>) query
+					.execute(companyType);
+
+			if (daos != null) {
+				for (CompanyDao dao : daos) {
+					companyDetails.add(dao.toDetailsDto());
+				}
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			pm.close();
 		}
-		
-		return companyDetails;	
-		
+
+		return companyDetails;
+
+	}
+
+	public CompanyDao getById(String id) {
+
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		return getById(id, pm, true);
+
 	}
 
 	/**
@@ -77,24 +94,24 @@ public class CompanyJdoServiceImpl implements CompanyJdoService {
 	 * @param id
 	 * @return
 	 */
-	public CompanyDto getById(String id) {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		
-		try{
+	private CompanyDao getById(String id, PersistenceManager pm, boolean closePM) {
+		CompanyDao companyDao = null;
+		try {
 
 			Object idInstance = pm.newObjectIdInstance(CompanyDao.class, id);
-			CompanyDao attachedCompany = (CompanyDao) pm.getObjectById(idInstance);
-			if( attachedCompany != null ){
-			  return attachedCompany.toDto();
+			companyDao = (CompanyDao) pm.getObjectById(idInstance);
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (closePM) {
+				pm.close();
 			}
-		
 		}
-		finally{
-			pm.close();
-		}
-	  	
-		return null;
-		
+
+		return companyDao;
+
 	}
 
 	/**
@@ -104,6 +121,14 @@ public class CompanyJdoServiceImpl implements CompanyJdoService {
 	public void delete(Object dto) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public AppUserJdoService getAppUserJdoService() {
+		return appUserJdoService;
+	}
+
+	public void setAppUserJdoService(AppUserJdoService appUserJdoService) {
+		this.appUserJdoService = appUserJdoService;
 	}
 
 }

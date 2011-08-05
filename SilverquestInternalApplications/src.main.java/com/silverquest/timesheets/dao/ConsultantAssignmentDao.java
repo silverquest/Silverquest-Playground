@@ -10,10 +10,10 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import com.silverquest.timesheets.dto.ConsultantContractDto;
+import com.silverquest.timesheets.dto.ConsultantAssignmentDto;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
-public class ConsultantContractDao implements Serializable {
+public class ConsultantAssignmentDao implements Serializable {
 
 	private static final long serialVersionUID = -3042566807271541471L;
 	@PrimaryKey
@@ -42,11 +42,11 @@ public class ConsultantContractDao implements Serializable {
 	private String projectName;
 
 
-	public ConsultantContractDao() {
+	public ConsultantAssignmentDao() {
 
 	}
 
-	public ConsultantContractDao(ConsultantContractDto dto) {
+	public ConsultantAssignmentDao(ConsultantAssignmentDto dto) {
 		
 		id = dto.getId();
 		consultantId = dto.getConsultantId();
@@ -60,8 +60,8 @@ public class ConsultantContractDao implements Serializable {
 
 	}
 
-	public ConsultantContractDto toDto() {
-		ConsultantContractDto dto = new ConsultantContractDto();
+	public ConsultantAssignmentDto toDto() {
+		ConsultantAssignmentDto dto = new ConsultantAssignmentDto();
 		dto.setId(id);
 		dto.setConsultantId(consultantId);
 		dto.setClientCompanyId(clientCompanyId);

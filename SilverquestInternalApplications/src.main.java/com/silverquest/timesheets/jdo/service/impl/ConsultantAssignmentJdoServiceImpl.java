@@ -10,18 +10,18 @@ import org.springframework.beans.factory.InitializingBean;
 
 import com.silverquest.timesheets.PMF;
 
-import com.silverquest.timesheets.dao.ConsultantContractDao;
-import com.silverquest.timesheets.dto.ConsultantContractDto;
-import com.silverquest.timesheets.jdo.service.ConsultantContractJdoService;
+import com.silverquest.timesheets.dao.ConsultantAssignmentDao;
+import com.silverquest.timesheets.dto.ConsultantAssignmentDto;
+import com.silverquest.timesheets.jdo.service.ConsultantAssignmentJdoService;
 
 
 
-public class ConsultantContractJdoServiceImpl implements ConsultantContractJdoService, InitializingBean{
+public class ConsultantAssignmentJdoServiceImpl implements ConsultantAssignmentJdoService, InitializingBean{
 
 
-	public ConsultantContractDto save(ConsultantContractDto dto){
+	public ConsultantAssignmentDto save(ConsultantAssignmentDto dto){
 		
-		ConsultantContractDao consultantContractDao = new ConsultantContractDao(dto);
+		ConsultantAssignmentDao consultantContractDao = new ConsultantAssignmentDao(dto);
 
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 
@@ -42,20 +42,20 @@ public class ConsultantContractJdoServiceImpl implements ConsultantContractJdoSe
 	
 	
 
-	public ConsultantContractDto findCurrentConsultantContract(String userId){
+	public ConsultantAssignmentDto findCurrentConsultantContract(String userId){
 
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 
-		ConsultantContractDao dao = null;
+		ConsultantAssignmentDao dao = null;
 		try {
 			
-			Query query = pm.newQuery(ConsultantContractDto.class);
+			Query query = pm.newQuery(ConsultantAssignmentDto.class);
 		    query.declareParameters("String userId, boolean isClosed, ");
 		    query.setFilter("this.consultantId == userId and this.isClosed == isClosed");
 		    query.setOrdering("this.dateStarted descending");
 		    
 		    
-		    List<ConsultantContractDao> list = (List<ConsultantContractDao>) query.execute(userId, false);
+		    List<ConsultantAssignmentDao> list = (List<ConsultantAssignmentDao>) query.execute(userId, false);
 		    
 		    if( list != null ){
 		    	dao = list.get(0);

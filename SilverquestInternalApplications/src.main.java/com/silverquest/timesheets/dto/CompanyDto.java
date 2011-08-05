@@ -17,7 +17,7 @@ public class CompanyDto implements Serializable, IsSerializable{
 	private String companyName;
 	private AddressDto address;
 	private CompanyType type;
-	private Set<String> employeeIds;
+	private Set<String> appUserIds;
 	
 	public CompanyDto(){
 		
@@ -55,12 +55,12 @@ public class CompanyDto implements Serializable, IsSerializable{
 		this.type = type;
 	}
 	
-	public Set<String> getEmployeeIds() {
-		return employeeIds;
+	public Set<String> getAppUserIds() {
+		return appUserIds;
 	}
 
-	public void setEmployeeIds(Set<String> employeeIds) {
-		this.employeeIds = employeeIds;
+	public void setAppUserIds(Set<String> appUserIds) {
+		this.appUserIds = appUserIds;
 	}
 	
 

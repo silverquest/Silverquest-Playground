@@ -9,7 +9,7 @@ import javax.jdo.annotations.Persistent;
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 
-public class ConsultantDto extends EmployeeDto implements Serializable, IsSerializable{
+public class ConsultantDto extends AppUserDto implements Serializable, IsSerializable{
 
 	private static final long serialVersionUID = 1141230946485280162L;
 

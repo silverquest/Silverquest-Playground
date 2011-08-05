@@ -30,15 +30,14 @@ public class CompanyDao implements Serializable {
 	private AddressDao address;
 	@Persistent
 	private CompanyType type;
-	@Persistent
-	private Set<String> employeeIds;
+
 
 	public CompanyDao(CompanyDto dto) {
 		id = dto.getId();
 		companyName = dto.getCompanyName();
 		address = new AddressDao(dto.getAddress());
 		type = dto.getType();
-		employeeIds = dto.getEmployeeIds();
+
 	}
 
 	public CompanyDto toDto() {
@@ -47,7 +46,6 @@ public class CompanyDao implements Serializable {
 		clientDto.setCompanyName(companyName);
 		clientDto.setAddress(address.toDto());
 		clientDto.setType(type);
-		clientDto.setEmployeeIds(employeeIds);
 		return clientDto;
 
 	}
@@ -85,14 +83,6 @@ public class CompanyDao implements Serializable {
 
 	public void setType(CompanyType type) {
 		this.type = type;
-	}
-
-	public Set<String> getEmployeeIds() {
-		return employeeIds;
-	}
-
-	public void setEmployeeIds(Set<String> employeeIds) {
-		this.employeeIds = employeeIds;
 	}
 
 	public CompanyDao() {

@@ -57,17 +57,16 @@
 					name="lastName" />
 				</li>
 				<li><label><span>User Id</span></label> <input type="text" id="userId"
-					name="userId" />
+					name="id" />
 				</li>
 				<li><label><span>Middle Name</span></label><input type="text" id="middleName"
 					name="middleName" />
 				</li>
-				<li><label><span>Company Id</span></label> <input type="text" id="companyId"
-					name="companyId" />
-				</li>
-				<li><label><span>Company Type</span></label> <input type="text"
-					id="companyType" />
-				</li>
+				<li><label><span>Company</span></label><select name="companyId">
+				   <c:forEach var="item" items="${model.companies}">
+						<option value="${item.id}"><c:out value="${item.companyName}"/></option>
+					</c:forEach>
+	  			 </select></li>
 
 			</ul>
 			
@@ -86,10 +85,13 @@
 				
 	<li><label><span>Company Name</span></label> <input type="text" id="companyName"
 					name="companyName" />
-					<input type="hidden" name="type" value="CLIENT_COMPANY"/>
-					</li>
-					
-
+				<li>	
+				<li><label><span>Type</span></label> 
+				<select name="type">
+				  <option value="PARENT">Silverquest</option>
+				  <option value="CLIENT">Client</option>"
+				</select>
+			    </li>
 				<li><label><span>Addr 1</span></label> <input type="text" id="address.addressLine1"
 								name="address.addressLine1" /></li>
 			
@@ -124,16 +126,39 @@
 		</form>
 	</div>
 	
-	<div id="createContract" class="CREATE">
-	   <h2>List of Companies</h2>
-	   <ul>
-	   <c:forEach var="item" items="${model.companies}">
+	<div id="" class="CREATE">
+	   <h2>Create assignment</h2>
+		<form name="input" action="/simple-admin/saveAssignment.htm" method="post">
+		   <ul>
+		     <li>
+		       <select name="clientCompanyId">
+		       
+		          <c:forEach var="item" items="${model.clientCompanies}">
+						<option value="${item.id}"><c:out value="${item.companyName}"/></option>
+					</c:forEach>
+		       </select>
+		     </li>
+		     <li>
+		       <select name="consultantId">
+		       
+		          <c:forEach var="item" items="${model.consultants}">
+						<option value="${item.id}"><c:out value="${item.firstName}"/> - <c:out value="${item.lastName}"/></option>
+					</c:forEach>
+		       </select>
+		     </li>
+		   
+		   	 <li><label><span>Hourly rate</span></label> <input type="text" id="hourlyRateCharged"
+								name="hourlyRateCharged" />
+					<input type="hidden" name="currency" value="AUD"/>			
+								</li>
+		   
+		   <li><label><span>Project Name</span></label> <input type="text" id="projectName"
+								name="projectName" /></li>
+		   </ul>
+			<input type="submit" name="submit" value="Create Assignment"/>
+		</form>
+	   
 
-	      <li>
-			<c:out value="${item.id}" /> - <c:out value="${item.companyName}"/>
-		  </li>
-		</c:forEach>
-		</ul>
 	
 	</div>
 </div>

@@ -1,8 +1,10 @@
 package com.silverquest.timesheets.service.impl;
 
 import org.springframework.beans.factory.InitializingBean;
+
+import com.silverquest.timesheets.dto.CompanyDetailsDto;
 import com.silverquest.timesheets.dto.CompanyDto;
-import com.silverquest.timesheets.dto.ConsultantContractDto;
+import com.silverquest.timesheets.dto.ConsultantAssignmentDto;
 import com.silverquest.timesheets.dto.ConsultantDto;
 import com.silverquest.timesheets.dto.TimeSheetDto;
 import com.silverquest.timesheets.jdo.service.impl.TimeSheetJdoServiceImpl;
@@ -26,7 +28,7 @@ public class TimeSheetServiceImpl extends TimeSheetJdoServiceImpl implements Tim
 
 		TimeSheetTemplate template = new TimeSheetTemplate();
 
-		ConsultantContractDto consultantContract = getConsultantService()
+		ConsultantAssignmentDto consultantContract = getConsultantService()
 				.findCurrentConsultantContract(userId);
 		
 		if( consultantContract == null ){
@@ -38,10 +40,9 @@ public class TimeSheetServiceImpl extends TimeSheetJdoServiceImpl implements Tim
 		ConsultantDto consultantDetails = getConsultantService()
 				.getConsultantDetails(userId);
 
-		CompanyDto companyDetails = getCompanyService().getCompanyDetails(
-				clientCompanyId);
+		CompanyDto company = getCompanyService().getDtoById( clientCompanyId );
 
-		template.setClientCompany(companyDetails);
+		template.setClientCompany(company );
 		template.setConsultant(consultantDetails);
 
 		return template;

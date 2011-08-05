@@ -1,6 +1,6 @@
 package com.silverquest.timesheets.service.impl;
 
-import com.silverquest.timesheets.dto.ConsultantContractDto;
+import com.silverquest.timesheets.dto.ConsultantAssignmentDto;
 import com.silverquest.timesheets.dto.ConsultantDto;
 import com.silverquest.timesheets.jdo.service.impl.ConsultantJdoServiceImpl;
 import com.silverquest.timesheets.service.ConsultantService;
@@ -19,7 +19,7 @@ public class ConsultantServiceImpl extends ConsultantJdoServiceImpl implements C
 	}
 
 	@Override
-	public ConsultantContractDto findCurrentConsultantContract(String userId) {
+	public ConsultantAssignmentDto findCurrentConsultantContract(String userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

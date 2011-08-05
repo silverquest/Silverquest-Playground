@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class ConsultantContractDto implements Serializable,
+public class ConsultantAssignmentDto implements Serializable,
 		IsSerializable {
 
 	/**
@@ -27,7 +27,7 @@ public class ConsultantContractDto implements Serializable,
 
 
 
-	public ConsultantContractDto(){
+	public ConsultantAssignmentDto(){
 		
 	}
 

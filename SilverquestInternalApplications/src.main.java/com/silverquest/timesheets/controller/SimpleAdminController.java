@@ -1,32 +1,29 @@
 package com.silverquest.timesheets.controller;
 
-import java.io.BufferedReader;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
-
 import com.silverquest.timesheets.command.CreateConsultantCommand;
-import com.silverquest.timesheets.command.FileUploadBean;
+import com.silverquest.timesheets.dto.AppUserDto;
 import com.silverquest.timesheets.dto.CompanyDetailsDto;
 import com.silverquest.timesheets.dto.CompanyDto;
 import com.silverquest.timesheets.dto.CompanyType;
+import com.silverquest.timesheets.dto.ConsultantAssignmentDto;
+import com.silverquest.timesheets.service.AppUserService;
 import com.silverquest.timesheets.service.CompanyService;
+import com.silverquest.timesheets.service.ConsultantAssignmentService;
 import com.silverquest.timesheets.service.ConsultantService;
 import com.silverquest.timesheets.service.util.CSVDataUploaderUtil;
 
@@ -36,11 +33,13 @@ public class SimpleAdminController extends MultiActionController implements
 
 	@Autowired
 	private ConsultantService consultantService;
-
-	@Autowired CompanyService companyService;
-
-
-
+	@Autowired 
+	private CompanyService companyService;
+	@Autowired
+	private AppUserService appUserService;
+	
+	@Autowired
+	private ConsultantAssignmentService consultantAssigmentService;
 	@Autowired
 	CSVDataUploaderUtil csvDataUploaderUtil;
 
@@ -59,6 +58,11 @@ public class SimpleAdminController extends MultiActionController implements
 			model.put("companies", companies);
 		}
 		
+		List<AppUserDto> consultants = appUserService.findParentEmployees();
+		model.put("consultants", consultants);
+		
+		model.put("clientCompanies",  companyService.findCompaniesByType(CompanyType.CLIENT.toString()));
+		
 		
 		request.setAttribute("model", model);
 		return new ModelAndView("simple-admin-view", model);
@@ -67,10 +71,11 @@ public class SimpleAdminController extends MultiActionController implements
 	
 	private List<CompanyDetailsDto> getListOfCompanies(){
 		
-		return companyService.getListOfCompanies(CompanyType.CLIENT_COMPANY.toString());
+		return companyService.findCompaniesByType(CompanyType.PARENT.toString());
 		
 	}
-
+	
+	/*
 	@RequestMapping(value = "/simple-admin/createTestData", method = RequestMethod.POST)
 	public ModelAndView createTestData(HttpServletRequest request,
 			HttpServletResponse response, FileUploadBean command)
@@ -94,6 +99,23 @@ public class SimpleAdminController extends MultiActionController implements
 		request.setAttribute("model", model);
 		return new ModelAndView("simple-admin-view", model);
 	}
+	*/
+	
+	@RequestMapping("/simple-admin/saveAssignment.htm")
+	public ModelAndView saveAssignment(HttpServletRequest request,
+			HttpServletResponse response, ConsultantAssignmentDto command)
+			throws ServletException, IOException {
+
+
+		consultantAssigmentService.save(command);
+
+		Map model = new HashMap();
+
+		model.put("message", "Saved");
+		request.setAttribute("model", model);
+		return new ModelAndView("simple-admin-view", model);
+	}
+	
 
 	@RequestMapping("/simple-admin/saveconsultant.htm")
 	public ModelAndView saveconsultant(HttpServletRequest request,
@@ -105,7 +127,6 @@ public class SimpleAdminController extends MultiActionController implements
 					+ command.getLastName());
 		}
 
-		// / NB - TEST THIS !!!!!!!!!!!!!!!!!!
 		consultantService.saveConsultant(command);
 
 		Map model = new HashMap();
@@ -172,6 +193,25 @@ public class SimpleAdminController extends MultiActionController implements
 
 	public void setCompanyService(CompanyService companyService) {
 		this.companyService = companyService;
+	}
+	
+	public AppUserService getAppUserService() {
+		return appUserService;
+	}
+
+
+	public void setAppUserService(AppUserService appUserService) {
+		this.appUserService = appUserService;
+	}
+	
+	public ConsultantAssignmentService getConsultantAssigmentService() {
+		return consultantAssigmentService;
+	}
+
+
+	public void setConsultantAssigmentService(
+			ConsultantAssignmentService consultantAssigmentService) {
+		this.consultantAssigmentService = consultantAssigmentService;
 	}
 
 }

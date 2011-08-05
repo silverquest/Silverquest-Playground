@@ -3,39 +3,30 @@ package com.silverquest.timesheets.dto;
 import java.util.Set;
 import com.silverquest.timesheets.dao.ContactDetailsDao;
 
-public class EmployeeDto {
+public class AppUserDto {
 
-	private String userId;
-	
+	private String id;
 	private String firstName;
-
 	private String lastName;
-	
 	private String middleName;
-	
-	private String companyId;
-	
 	private CompanyType companyType;
-	
 	private Set<String> roles;
-	
+	private String companyId;
+
 
 	private ContactDetailsDao contactDetails;
 	
-	public String getUserId() {
-		return userId;
+	public String getId() {
+		return id;
 	}
 
-
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setId(String id) {
+		this.id = id;
 	}
-
 
 	public String getFirstName() {
 		return firstName;
 	}
-
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -61,17 +52,6 @@ public class EmployeeDto {
 		this.middleName = middleName;
 	}
 
-
-	public String getCompanyId() {
-		return companyId;
-	}
-
-
-	public void setCompanyId(String companyId) {
-		this.companyId = companyId;
-	}
-
-
 	public CompanyType getCompanyType() {
 		return companyType;
 	}
@@ -90,8 +70,7 @@ public class EmployeeDto {
 	public void setRoles(Set<String> roles) {
 		this.roles = roles;
 	}
-
-
+	
 	public ContactDetailsDao getContactDetails() {
 		return contactDetails;
 	}
@@ -100,6 +79,15 @@ public class EmployeeDto {
 	public void setContactDetails(ContactDetailsDao contactDetails) {
 		this.contactDetails = contactDetails;
 	}
+
+	public String getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
+	}
+	
 
 
 	

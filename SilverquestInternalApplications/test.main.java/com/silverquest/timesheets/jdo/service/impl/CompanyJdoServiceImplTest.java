@@ -38,7 +38,7 @@ public class CompanyJdoServiceImplTest extends TestCase {
     	
 	    	CompanyDto dto = new CompanyDto();
 	    	dto.setCompanyName("Lisa's Company");
-	    	dto.setType(CompanyType.CLIENT_COMPANY);
+	    	dto.setType(CompanyType.CLIENT);
 	    	AddressDto address = new AddressDto();;
 	    	address.setAddressLine1("72 Avondale Park");
 	    	dto.setAddress(address);

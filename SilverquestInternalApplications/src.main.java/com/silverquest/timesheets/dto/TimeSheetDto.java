@@ -21,6 +21,9 @@ public class TimeSheetDto implements Serializable, IsSerializable {
     private Date weekStarting;
     private String owner;
     private Double totalHoursWorked;
+    private String assignmentId;
+
+
 	private List<TimeSheetEntryDto> timeSheetEntries;
 	private TimeSheetStatus status;
 	private TimeSheetTimeStampsDto timeStamps;
@@ -127,6 +130,14 @@ public class TimeSheetDto implements Serializable, IsSerializable {
 
 	public void setTimeStamps(TimeSheetTimeStampsDto timeStamps) {
 		this.timeStamps = timeStamps;
+	}
+	
+	public String getAssignmentId() {
+		return assignmentId;
+	}
+
+	public void setAssignmentId(String assignmentId) {
+		this.assignmentId = assignmentId;
 	}
 
 }

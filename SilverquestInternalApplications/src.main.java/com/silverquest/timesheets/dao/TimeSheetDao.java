@@ -71,7 +71,7 @@ public class TimeSheetDao implements Serializable {
 				timeSheetEntries.add(new TimeSheetEntryDao(entry));
 			}
 		}
-
+		contractId = dto.getAssignmentId();
 		status = dto.getStatus();
 		approvedBy = dto.getApprovedBy();
 		totalDaysWorked = dto.getTotalDaysWorked();
@@ -95,7 +95,7 @@ public class TimeSheetDao implements Serializable {
 				entries.add(entry.toDto());
 			}
 		}
-		
+		dto.setAssignmentId(contractId);
 		dto.setTimeStamps(timeStamps.toDto());
 		dto.setStatus(status);
 		dto.setTimeSheetEntries(entries);
