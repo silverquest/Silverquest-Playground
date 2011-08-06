@@ -4,11 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
 import com.silverquest.timesheets.enums.TimeSheetStatus;
 
 
-public class TimeSheetDto implements Serializable, IsSerializable {
+public class TimeSheetDto implements Serializable {
 
 	private static final long serialVersionUID = -2042703707862236886L;
 

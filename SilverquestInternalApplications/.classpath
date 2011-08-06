@@ -4,18 +4,6 @@
 	<classpathentry kind="src" output="test-classes" path="test"/>
 	<classpathentry kind="src" path="test.main.java"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/dev/eclipse/plugins/com.google.gwt.eclipse.sdkbundle_2.3.0.r37v201106211634/gwt-2.3.0/gwt-user.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/dev/eclipse/plugins/com.google.gwt.eclipse.sdkbundle_2.3.0.r37v201106211634/gwt-2.3.0/doc/javadoc/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/dev/eclipse/plugins/com.google.gwt.eclipse.sdkbundle_2.3.0.r37v201106211634/gwt-2.3.0/gwt-dev.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/dev/eclipse/plugins/com.google.gwt.eclipse.sdkbundle_2.3.0.r37v201106211634/gwt-2.3.0/doc/javadoc/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/dev/eclipse/plugins/com.google.gwt.eclipse.sdkbundle_2.3.0.r37v201106211634/gwt-2.3.0/validation-api-1.0.0.GA-sources.jar"/>
-	<classpathentry kind="lib" path="C:/dev/eclipse/plugins/com.google.gwt.eclipse.sdkbundle_2.3.0.r37v201106211634/gwt-2.3.0/validation-api-1.0.0.GA.jar" sourcepath="C:/dev/eclipse/plugins/com.google.gwt.eclipse.sdkbundle_2.3.0.r37v201106211634/gwt-2.3.0/validation-api-1.0.0.GA-sources.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/antlr-3.0.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/asm-commons-2.1.jar"/>

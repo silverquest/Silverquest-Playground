@@ -6,10 +6,9 @@ import java.util.Date;
 import javax.jdo.annotations.Embedded;
 import javax.jdo.annotations.Persistent;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
 
 
-public class ConsultantDto extends AppUserDto implements Serializable, IsSerializable{
+public class ConsultantDto extends AppUserDto implements Serializable{
 
 	private static final long serialVersionUID = 1141230946485280162L;
 

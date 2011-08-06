@@ -3,10 +3,9 @@ package com.silverquest.timesheets.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
 import com.silverquest.timesheets.enums.WorkCode;
 
-public class TimeSheetEntryDto implements Serializable, IsSerializable {
+public class TimeSheetEntryDto implements Serializable {
 
 	/**
 	 * 

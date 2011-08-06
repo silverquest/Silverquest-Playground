@@ -3,10 +3,7 @@ package com.silverquest.timesheets.dto;
 import java.io.Serializable;
 import java.util.Set;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
-
-
-public class CompanyDto implements Serializable, IsSerializable{
+public class CompanyDto implements Serializable{
 
 	/**
 	 * 

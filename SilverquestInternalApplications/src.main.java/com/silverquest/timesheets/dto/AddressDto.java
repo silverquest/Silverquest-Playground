@@ -2,11 +2,9 @@ package com.silverquest.timesheets.dto;
 
 import java.io.Serializable;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
 
 
-
-public class AddressDto implements Serializable, IsSerializable{
+public class AddressDto implements Serializable{
 
 	private static final long serialVersionUID = -4467528580168627942L;
 
