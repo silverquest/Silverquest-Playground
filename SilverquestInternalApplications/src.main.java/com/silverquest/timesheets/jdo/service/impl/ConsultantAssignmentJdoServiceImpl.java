@@ -18,6 +18,9 @@ import com.silverquest.timesheets.jdo.service.ConsultantAssignmentJdoService;
 
 public class ConsultantAssignmentJdoServiceImpl implements ConsultantAssignmentJdoService, InitializingBean{
 
+	
+	private final static String SELECT_CONTRACT_BY_USERS = "SELECT from " + ConsultantAssignmentDao.class.getName() +  " where consultantId =: userId"; 
+	private final static String SELECT_CONTRACT_BY_USERS_OPEN = SELECT_CONTRACT_BY_USERS + " and isClosed == false";
 
 	public ConsultantAssignmentDto save(ConsultantAssignmentDto dto){
 		
@@ -41,21 +44,23 @@ public class ConsultantAssignmentJdoServiceImpl implements ConsultantAssignmentJ
 	}
 	
 	
-
-	public ConsultantAssignmentDto findCurrentConsultantContract(String userId){
+	/**
+	 * 
+	 */
+	public ConsultantAssignmentDto findCurrentConsultantContract(String userId, boolean openOnly){
 
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 
 		ConsultantAssignmentDao dao = null;
 		try {
 			
-			Query query = pm.newQuery(ConsultantAssignmentDto.class);
-		    query.declareParameters("String userId, boolean isClosed, ");
-		    query.setFilter("this.consultantId == userId and this.isClosed == isClosed");
-		    query.setOrdering("this.dateStarted descending");
-		    
-		    
-		    List<ConsultantAssignmentDao> list = (List<ConsultantAssignmentDao>) query.execute(userId, false);
+			String queryStr = SELECT_CONTRACT_BY_USERS;
+			if( openOnly ){
+				queryStr = SELECT_CONTRACT_BY_USERS_OPEN;
+			}
+			Query query = pm.newQuery(queryStr);
+
+		    List<ConsultantAssignmentDao> list = (List<ConsultantAssignmentDao>) query.execute(userId);
 		    
 		    if( list != null ){
 		    	dao = list.get(0);

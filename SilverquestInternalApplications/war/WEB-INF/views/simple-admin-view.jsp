@@ -8,6 +8,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <%@ page isELIgnored="false"%>
 
 <link rel="stylesheet" href="/style.css" type="text/css"></link>
@@ -146,6 +147,7 @@
 					</c:forEach>
 		       </select>
 		     </li>
+		     Assignment Id <c:out value="${model.assingmentId}"/>
 		   
 		   	 <li><label><span>Hourly rate</span></label> <input type="text" id="hourlyRateCharged"
 								name="hourlyRateCharged" />
@@ -158,9 +160,8 @@
 			<input type="submit" name="submit" value="Create Assignment"/>
 		</form>
 	   
-
-	
 	</div>
+
 </div>
 </body>
 </html>

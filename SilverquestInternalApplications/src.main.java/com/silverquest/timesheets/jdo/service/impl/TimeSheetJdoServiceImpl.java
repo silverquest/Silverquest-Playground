@@ -3,6 +3,7 @@ package com.silverquest.timesheets.jdo.service.impl;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import com.silverquest.timesheets.PMF;
+import com.silverquest.timesheets.dao.ConsultantAssignmentDao;
 import com.silverquest.timesheets.dao.TimeSheetDao;
 import com.silverquest.timesheets.dto.TimeSheetDto;
 import com.silverquest.timesheets.jdo.service.TimeSheetJdoService;
@@ -34,6 +35,34 @@ public class TimeSheetJdoServiceImpl implements TimeSheetJdoService{
 		return timeSheetDto;	
 		
 		
+	}
+
+	@Override
+	public TimeSheetDto save(TimeSheetDto dto) {
+	
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		TimeSheetDao timeSheetDao = null;
+		try{
+			
+			timeSheetDao = new TimeSheetDao(dto);
+			
+	
+		    timeSheetDao = pm.makePersistent(timeSheetDao);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+				pm.close();
+		}
+			
+		if (timeSheetDao != null) {
+			return timeSheetDao.toDto();
+		}
+			
+		return null;
+			
+
+	  	
 	}
 	
 

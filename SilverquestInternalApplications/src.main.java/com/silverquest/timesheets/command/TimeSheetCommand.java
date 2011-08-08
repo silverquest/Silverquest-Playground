@@ -1,34 +1,27 @@
 package com.silverquest.timesheets.command;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.silverquest.timesheets.dto.TimeSheetDto;
+import com.silverquest.timesheets.dto.TimeSheetEntryDto;
 
-import com.silverquest.timesheets.dao.TimeSheetEntryDao;
+public class TimeSheetCommand extends TimeSheetDto{
 
-public class TimeSheetCommand {
 
-  private String weekStarting = "";
-  private List<TimeSheetEntryDao> entries;
+  /**
+	 * 
+	 */
+  private static final long serialVersionUID = 7138956268562427072L;
   int size = 7;
   
   
   public TimeSheetCommand(){
+	  
+	super();
     
-    entries = new ArrayList<TimeSheetEntryDao>();
-    
+	//Initializing timeSheetEntries
     for( int i = 0 ; i < size; i ++ ){
-      entries.add( new TimeSheetEntryDao() );
+    	super.getTimeSheetEntries().add( new TimeSheetEntryDto() );
     }
  
   }
-  
-  public void setWeekStarting(String weekStarting){
-    this.weekStarting = weekStarting;
-  }
-  
-  public String getWeekStarting(){
-    return weekStarting;
-  }
-  
-  	
+    	
 }

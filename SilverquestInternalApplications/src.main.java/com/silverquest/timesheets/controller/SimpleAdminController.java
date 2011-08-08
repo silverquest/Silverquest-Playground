@@ -2,6 +2,7 @@ package com.silverquest.timesheets.controller;
 
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -11,13 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import com.silverquest.timesheets.command.CreateConsultantCommand;
 import com.silverquest.timesheets.dto.AppUserDto;
-import com.silverquest.timesheets.dto.CompanyDetailsDto;
 import com.silverquest.timesheets.dto.CompanyDto;
 import com.silverquest.timesheets.dto.CompanyType;
 import com.silverquest.timesheets.dto.ConsultantAssignmentDto;
@@ -25,6 +28,7 @@ import com.silverquest.timesheets.service.AppUserService;
 import com.silverquest.timesheets.service.CompanyService;
 import com.silverquest.timesheets.service.ConsultantAssignmentService;
 import com.silverquest.timesheets.service.ConsultantService;
+import com.silverquest.timesheets.service.TimeSheetService;
 import com.silverquest.timesheets.service.util.CSVDataUploaderUtil;
 
 @Controller
@@ -42,6 +46,9 @@ public class SimpleAdminController extends MultiActionController implements
 	private ConsultantAssignmentService consultantAssigmentService;
 	@Autowired
 	CSVDataUploaderUtil csvDataUploaderUtil;
+	@Autowired
+	private TimeSheetService timeSheetService;
+
 
 	@RequestMapping("/simple-admin/intro")
 	public ModelAndView intro(HttpServletRequest request,
@@ -53,11 +60,9 @@ public class SimpleAdminController extends MultiActionController implements
 		Map model = new HashMap();
 		model.put("now", now);
 		
-		List<CompanyDetailsDto> companies = getListOfCompanies();
-		if( companies != null ){
-			model.put("companies", companies);
-		}
 		
+		model.put("clientCompanies",  companyService.findCompaniesByType(CompanyType.CLIENT.toString()));
+
 		List<AppUserDto> consultants = appUserService.findParentEmployees();
 		model.put("consultants", consultants);
 		
@@ -69,11 +74,6 @@ public class SimpleAdminController extends MultiActionController implements
 	}
 	
 	
-	private List<CompanyDetailsDto> getListOfCompanies(){
-		
-		return companyService.findCompaniesByType(CompanyType.PARENT.toString());
-		
-	}
 	
 	/*
 	@RequestMapping(value = "/simple-admin/createTestData", method = RequestMethod.POST)
@@ -107,11 +107,14 @@ public class SimpleAdminController extends MultiActionController implements
 			throws ServletException, IOException {
 
 
-		consultantAssigmentService.save(command);
+		command = consultantAssigmentService.save(command);
 
 		Map model = new HashMap();
 
 		model.put("message", "Saved");
+		
+		
+		model.put("assingmentId", command.getId());
 		request.setAttribute("model", model);
 		return new ModelAndView("simple-admin-view", model);
 	}
@@ -153,6 +156,8 @@ public class SimpleAdminController extends MultiActionController implements
 	}
 	
 
+	
+
 	public ConsultantService getConsultantService() {
 		return consultantService;
 	}
@@ -160,6 +165,16 @@ public class SimpleAdminController extends MultiActionController implements
 	public void setConsultantService(ConsultantService consultantService) {
 		this.consultantService = consultantService;
 	}
+	
+	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		dateFormat.setLenient(true);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(false));
+	}
+	
+	
+
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -212,6 +227,15 @@ public class SimpleAdminController extends MultiActionController implements
 	public void setConsultantAssigmentService(
 			ConsultantAssignmentService consultantAssigmentService) {
 		this.consultantAssigmentService = consultantAssigmentService;
+	}
+	
+	public TimeSheetService getTimeSheetService() {
+		return timeSheetService;
+	}
+
+
+	public void setTimeSheetService(TimeSheetService timeSheetService) {
+		this.timeSheetService = timeSheetService;
 	}
 
 }

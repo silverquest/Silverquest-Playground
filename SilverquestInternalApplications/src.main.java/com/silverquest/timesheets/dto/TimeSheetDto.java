@@ -1,6 +1,7 @@
 package com.silverquest.timesheets.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +31,8 @@ public class TimeSheetDto implements Serializable {
 
 
 	public TimeSheetDto(){
-		
+      timeSheetEntries = new ArrayList<TimeSheetEntryDto>();
+      timeStamps = new TimeSheetTimeStampsDto();
 	}
 	
 	public String getApprovedBy() {
