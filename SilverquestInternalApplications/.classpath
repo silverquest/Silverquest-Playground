@@ -23,8 +23,8 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gmultipart-0.2-java5.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-testing-1.5.1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-api-1.0-sdk-1.5.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-api-labs-1.5.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-jsr107cache-1.5.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-api-1.0-sdk-1.5.1.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
