@@ -3,7 +3,6 @@ package com.silverquest.timesheets.service.impl;
 import java.util.List;
 
 import com.silverquest.timesheets.dao.AppUserDao;
-import com.silverquest.timesheets.dto.AppUserDetailsDto;
 import com.silverquest.timesheets.dto.AppUserDto;
 import com.silverquest.timesheets.dto.CompanyDetailsDto;
 import com.silverquest.timesheets.jdo.service.impl.AppUserJdoServiceImpl;

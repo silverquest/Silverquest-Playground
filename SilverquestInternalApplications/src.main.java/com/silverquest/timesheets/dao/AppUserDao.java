@@ -9,7 +9,6 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.silverquest.timesheets.dto.CompanyType;
-import com.silverquest.timesheets.dto.AppUserDetailsDto;
 import com.silverquest.timesheets.dto.AppUserDto;
 import com.silverquest.timesheets.enums.UserRole;
 import com.silverquest.timesheets.enums.UserType;
@@ -40,8 +39,7 @@ public class AppUserDao {
 	private String clientCompanyId;
 	@Persistent
 	private UserType userType;
-	@Persistent
-	private String password;
+
 
 
 	public AppUserDao(){
@@ -58,20 +56,11 @@ public class AppUserDao {
 		setContactDetails(dto.getContactDetails());
 		setClientCompanyId(dto.getClientCompanyId());
 		setUserType(dto.getUserType());
-		setPassword(dto.getPassword());
+
 
 	}
 
-	public AppUserDetailsDto toAppUserDetailsDto() {
 
-		AppUserDetailsDto dto = new AppUserDetailsDto();
-		dto.setId(id);
-		dto.setFirstName(firstName);
-		dto.setLastName(lastName);
-		
-		return dto;
-
-	}
 
 	public AppUserDto toDto() {
 
@@ -161,15 +150,7 @@ public class AppUserDao {
 		this.userType = userType;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public void setRoles(Set<UserRole> roles) {
+    public void setRoles(Set<UserRole> roles) {
 		this.roles = roles;
 	}
 	
