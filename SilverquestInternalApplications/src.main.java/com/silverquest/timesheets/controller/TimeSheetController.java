@@ -48,7 +48,7 @@ public class TimeSheetController extends MultiActionController implements
 			HttpServletResponse response, TimeSheetCommand command)
 			throws ServletException, IOException {
 
-		Map model = new HashMap();
+		Map<String, Object> model = new HashMap<String, Object>();
 
 		model = referenceData(model);
 
@@ -58,7 +58,7 @@ public class TimeSheetController extends MultiActionController implements
 
 	}
 
-	private Map referenceData(Map model) {
+	private Map<String, Object> referenceData(Map<String, Object> model) {
 
 		List<TimeSheetEntryDto> timeSheetEntries = new ArrayList<TimeSheetEntryDto>();
 
@@ -92,7 +92,7 @@ public class TimeSheetController extends MultiActionController implements
 		// save the time sheet
 		timeSheetService.save(command);
 
-		Map model = new HashMap();
+		Map<String, Object> model = new HashMap<String, Object>();
 		
 		model = referenceData(model);
 

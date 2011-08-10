@@ -15,9 +15,4 @@ private PMF() {}
 		return pmfInstance;
 	}
 	
-	//Comment test
-	//Test asdfsadfasd
-	
-	//TESTING TESTING 123
-	// TESTING ........................
 }

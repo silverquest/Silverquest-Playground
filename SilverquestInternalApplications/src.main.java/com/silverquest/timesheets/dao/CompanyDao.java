@@ -1,7 +1,6 @@
 package com.silverquest.timesheets.dao;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.jdo.annotations.Embedded;
 import javax.jdo.annotations.Extension;

@@ -11,6 +11,8 @@ import javax.jdo.annotations.PrimaryKey;
 import com.silverquest.timesheets.dto.CompanyType;
 import com.silverquest.timesheets.dto.AppUserDetailsDto;
 import com.silverquest.timesheets.dto.AppUserDto;
+import com.silverquest.timesheets.enums.UserRole;
+import com.silverquest.timesheets.enums.UserType;
 
 import javax.jdo.annotations.Inheritance;
 
@@ -30,13 +32,16 @@ public class AppUserDao {
 	@Persistent
 	private CompanyType companyType;
 	@Persistent
-	private Set<String> roles;
+	private Set<UserRole> roles;
 	@Persistent
 	@Embedded
 	private ContactDetailsDao contactDetails;
 	@Persistent
-	private String companyId;
-
+	private String clientCompanyId;
+	@Persistent
+	private UserType userType;
+	@Persistent
+	private String password;
 
 
 	public AppUserDao(){
@@ -51,7 +56,9 @@ public class AppUserDao {
 		setCompanyType(dto.getCompanyType());
 		setRoles(dto.getRoles());
 		setContactDetails(dto.getContactDetails());
-		setCompanyId(dto.getCompanyId());
+		setClientCompanyId(dto.getClientCompanyId());
+		setUserType(dto.getUserType());
+		setPassword(dto.getPassword());
 
 	}
 
@@ -74,10 +81,12 @@ public class AppUserDao {
 		dto.setLastName(getLastName());
 		dto.setMiddleName(getMiddleName());
 		dto.setCompanyType(getCompanyType());
-		dto.setRoles(getRoles());
+		dto.setRoles(roles);
 		dto.setContactDetails(getContactDetails());
 		dto.setCompanyType(companyType);
-		dto.setCompanyId(companyId);
+		dto.setClientCompanyId(clientCompanyId);
+		dto.setPassword(dto.getPassword());
+		dto.setUserType(userType);
 		return dto;
 
 	}
@@ -126,13 +135,6 @@ public class AppUserDao {
 		this.companyType = companyType;
 	}
 
-	public Set<String> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<String> roles) {
-		this.roles = roles;
-	}
 
 	public ContactDetailsDao getContactDetails() {
 		return contactDetails;
@@ -142,12 +144,37 @@ public class AppUserDao {
 		this.contactDetails = contactDetails;
 	}
 	
-	public String getCompanyId() {
-		return companyId;
+	
+	public String getClientCompanyId() {
+		return clientCompanyId;
 	}
 
-	public void setCompanyId(String companyId) {
-		this.companyId = companyId;
+	public void setClientCompanyId(String clientCompanyId) {
+		this.clientCompanyId = clientCompanyId;
+	}
+
+	public UserType getUserType() {
+		return userType;
+	}
+
+	public void setUserType(UserType userType) {
+		this.userType = userType;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setRoles(Set<UserRole> roles) {
+		this.roles = roles;
+	}
+	
+	public Set<UserRole> getRoles() {
+		return roles;
 	}
 
 }

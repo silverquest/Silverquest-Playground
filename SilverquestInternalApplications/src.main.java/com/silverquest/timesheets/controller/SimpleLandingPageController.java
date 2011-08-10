@@ -26,7 +26,7 @@ public class SimpleLandingPageController extends MultiActionController implement
      String now = (new Date()).toString();
      System.out.println("Returning hello view with " + now);
 
-      Map model = new HashMap();
+      Map<String, Object> model = new HashMap<String, Object>();
       model.put("now", now);
       request.setAttribute("model", model);
       return new ModelAndView("simple-landing-view", model);
@@ -39,7 +39,7 @@ public class SimpleLandingPageController extends MultiActionController implement
      String now = (new Date()).toString();
      System.out.println("Returning hello view with " + now);
 
-      Map model = new HashMap();
+ 	  Map<String, Object> model = new HashMap<String, Object>();
       model.put("now", now);
       request.setAttribute("model", model);
       return new ModelAndView("simple-landing-view", model);

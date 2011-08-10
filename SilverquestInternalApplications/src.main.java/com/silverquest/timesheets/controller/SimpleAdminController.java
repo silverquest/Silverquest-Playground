@@ -57,7 +57,7 @@ public class SimpleAdminController extends MultiActionController implements
 		String now = (new Date()).toString();
 		System.out.println("Returning hello view with " + now);
 
-		Map model = new HashMap();
+		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("now", now);
 		
 		
@@ -109,7 +109,7 @@ public class SimpleAdminController extends MultiActionController implements
 
 		command = consultantAssigmentService.save(command);
 
-		Map model = new HashMap();
+		Map<String, Object> model = new HashMap<String, Object>();
 
 		model.put("message", "Saved");
 		
@@ -132,8 +132,7 @@ public class SimpleAdminController extends MultiActionController implements
 
 		consultantService.saveConsultant(command);
 
-		Map model = new HashMap();
-
+		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("message", "Saved");
 		request.setAttribute("model", model);
 		return new ModelAndView("simple-admin-view", model);
@@ -148,7 +147,7 @@ public class SimpleAdminController extends MultiActionController implements
 		// / NB - TEST THIS !!!!!!!!!!!!!!!!!!
 		companyService.save(command);
 
-		Map model = new HashMap();
+		Map<String, Object> model = new HashMap<String, Object>();
 
 		model.put("message", "Saved");
 		request.setAttribute("model", model);

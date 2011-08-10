@@ -9,6 +9,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
 import com.silverquest.timesheets.dto.ConsultantDto;
+import com.silverquest.timesheets.enums.EmploymentType;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
 public class ConsultantDao extends AppUserDao implements Serializable {
@@ -19,14 +20,23 @@ public class ConsultantDao extends AppUserDao implements Serializable {
 	private Date dateOfBirth;
 
 	@Persistent
-	private Date dateStarted;
-
+	private Date dateOfEmployment;
+	
 	@Persistent
 	private String jobTitle;
+	
+	@Persistent
+	private EmploymentType employmentType;
 
 	@Embedded
 	@Persistent
 	private AddressDao address;
+	
+	@Embedded
+	@Persistent
+	private AbsenceDetailsDao absenceDetails;
+
+
 
 	public ConsultantDao(String userId) {
 		super(userId);
@@ -49,10 +59,15 @@ public class ConsultantDao extends AppUserDao implements Serializable {
 		}
 		setDateOfBirth(dto.getDateOfBirth());
 		setJobTitle(dto.getJobTitle());
-		setDateStarted(dto.getDateStarted());
-		super.setCompanyId(dto.getCompanyId());
+		setDateOfEmployment(dto.getDateOfEmployment());
+		setEmploymentType(dto.getEmploymentType());
+		super.setClientCompanyId(dto.getClientCompanyId());
+		
 		if (dto.getAddress() != null) {
 			address = new AddressDao(dto.getAddress());
+		}
+		if( dto.getAbsenceDetails() != null ){
+			absenceDetails = dto.getAbsenceDetails();
 		}
 	
 
@@ -71,9 +86,13 @@ public class ConsultantDao extends AppUserDao implements Serializable {
 		dto.setContactDetails(super.getContactDetails());
 		dto.setDateOfBirth(dateOfBirth);
 		dto.setJobTitle(jobTitle);
+		dto.setEmploymentType(employmentType);
 
 		if (address != null) {
 			dto.setAddress(address.toDto());
+		}
+		if( absenceDetails != null ){
+			dto.setAbsenceDetails(absenceDetails);
 		}
 
 		return dto;
@@ -96,13 +115,6 @@ public class ConsultantDao extends AppUserDao implements Serializable {
 		this.jobTitle = jobTitle;
 	}
 
-	public Date getDateStarted() {
-		return dateStarted;
-	}
-
-	public void setDateStarted(Date dateStarted) {
-		this.dateStarted = dateStarted;
-	}
 
 	public AddressDao getAddress() {
 		return address;
@@ -110,6 +122,30 @@ public class ConsultantDao extends AppUserDao implements Serializable {
 
 	public void setAddress(AddressDao address) {
 		this.address = address;
+	}
+	
+	public Date getDateOfEmployment() {
+		return dateOfEmployment;
+	}
+
+	public void setDateOfEmployment(Date dateOfEmployment) {
+		this.dateOfEmployment = dateOfEmployment;
+	}
+	
+	public EmploymentType getEmploymentType() {
+		return employmentType;
+	}
+
+	public void setEmploymentType(EmploymentType employmentType) {
+		this.employmentType = employmentType;
+	}
+	
+	public AbsenceDetailsDao getAbsenceDetails() {
+		return absenceDetails;
+	}
+
+	public void setAbsenceDetails(AbsenceDetailsDao absenceDetails) {
+		this.absenceDetails = absenceDetails;
 	}
 
 }

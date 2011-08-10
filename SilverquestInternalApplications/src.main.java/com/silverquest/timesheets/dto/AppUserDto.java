@@ -1,7 +1,10 @@
 package com.silverquest.timesheets.dto;
 
 import java.util.Set;
+
 import com.silverquest.timesheets.dao.ContactDetailsDao;
+import com.silverquest.timesheets.enums.UserRole;
+import com.silverquest.timesheets.enums.UserType;
 
 public class AppUserDto {
 
@@ -10,8 +13,28 @@ public class AppUserDto {
 	private String lastName;
 	private String middleName;
 	private CompanyType companyType;
-	private Set<String> roles;
-	private String companyId;
+	private Set<UserRole> roles;
+	private String clientCompanyId;
+	private UserType userType;
+
+	public UserType getUserType() {
+		return userType;
+	}
+
+	public void setUserType(UserType userType) {
+		this.userType = userType;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	private String password;
+
 
 
 	private ContactDetailsDao contactDetails;
@@ -62,12 +85,12 @@ public class AppUserDto {
 	}
 
 
-	public Set<String> getRoles() {
+	public Set<UserRole> getRoles() {
 		return roles;
 	}
 
 
-	public void setRoles(Set<String> roles) {
+	public void setRoles(Set<UserRole> roles) {
 		this.roles = roles;
 	}
 	
@@ -80,14 +103,14 @@ public class AppUserDto {
 		this.contactDetails = contactDetails;
 	}
 
-	public String getCompanyId() {
-		return companyId;
+	public String getClientCompanyId() {
+		return clientCompanyId;
 	}
 
-	public void setCompanyId(String companyId) {
-		this.companyId = companyId;
+	public void setClientCompanyId(String clientCompanyId) {
+		this.clientCompanyId = clientCompanyId;
 	}
-	
+
 
 
 	

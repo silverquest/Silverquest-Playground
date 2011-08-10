@@ -3,8 +3,8 @@ package com.silverquest.timesheets.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.jdo.annotations.Embedded;
-import javax.jdo.annotations.Persistent;
+import com.silverquest.timesheets.dao.AbsenceDetailsDao;
+import com.silverquest.timesheets.enums.EmploymentType;
 
 
 
@@ -13,20 +13,18 @@ public class ConsultantDto extends AppUserDto implements Serializable{
 	private static final long serialVersionUID = 1141230946485280162L;
 
 	public ConsultantDto() {
+
 	}
 	
-	@Persistent
 	private Date dateOfBirth;
-	
-	@Persistent
-	private Date dateStarted;
-	
-	@Persistent
+	private Date dateOfEmployment;
+	private EmploymentType employmentType;
 	private String jobTitle;
-	
-	@Embedded
-	@Persistent
 	private AddressDto address;
+	private AbsenceDetailsDao absenceDetails;
+
+
+
 
 	public AddressDto getAddress() {
 		return address;
@@ -52,16 +50,28 @@ public class ConsultantDto extends AppUserDto implements Serializable{
 		this.jobTitle = jobTitle;
 	}
 
-
-	public Date getDateStarted() {
-		return dateStarted;
+	public Date getDateOfEmployment() {
+		return dateOfEmployment;
 	}
 
-	public void setDateStarted(Date dateStarted) {
-		this.dateStarted = dateStarted;
+	public void setDateOfEmployment(Date dateOfEmployment) {
+		this.dateOfEmployment = dateOfEmployment;
 	}
 	
+	public EmploymentType getEmploymentType() {
+		return employmentType;
+	}
 
+	public void setEmploymentType(EmploymentType employmentType) {
+		this.employmentType = employmentType;
+	}
+	
+	public AbsenceDetailsDao getAbsenceDetails() {
+		return absenceDetails;
+	}
 
+	public void setAbsenceDetails(AbsenceDetailsDao absenceDetails) {
+		this.absenceDetails = absenceDetails;
+	}
 
 }
