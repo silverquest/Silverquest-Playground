@@ -14,4 +14,6 @@ private PMF() {}
 	public static PersistenceManagerFactory get() {
 		return pmfInstance;
 	}
+	
+	//Comment test
 }
