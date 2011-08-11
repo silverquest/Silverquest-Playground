@@ -14,17 +14,20 @@
 	    <context:component-scan base-package="com.silverquest.timesheets.controller" />
         <context:component-scan base-package="example.controllers" />
         <context:component-scan base-package="com.silverquest.timesheets.jdo.service" />
-
-
+        
+       <!-- Configures the @Controller programming model -->
+	   <mvc:annotation-driven />
+	   
+	   <mvc:resources mapping="/resources/**" location="/resources/" />
+	   
         <bean id="viewResolver"
                 class="org.springframework.web.servlet.view.InternalResourceViewResolver"
                 p:prefix="/WEB-INF/views/" p:suffix=".jsp" />
                
 
 		<bean id="multipartResolver"
-    class="org.gmr.web.multipart.GMultipartResolver">
+  		  class="org.gmr.web.multipart.GMultipartResolver">
 
    		 <!-- one of the properties available; the maximum file size in bytes -->
-    <property name="maxUploadSize" value="100000"/>
-	</bean>
+    <property name="maxUploadSize" value="100000"/></bean>
 </beans>

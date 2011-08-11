@@ -23,6 +23,10 @@ public class AbsenceDetailsDao {
 	private Double totalLeaveDaysAllowedPerYear;
 	@Persistent
 	private Double totalSickDaysAllowedPerYear;
+	@Persistent
+	private Double daysInLieuEarned;
+	@Persistent
+	private Double daysInLieuUsed;
 	
 	public AbsenceDetailsDao(){
 		
@@ -73,6 +77,22 @@ public class AbsenceDetailsDao {
 	}
 	public void setTotalSickDaysAllowedPerYear(Double totalSickDaysAllowedPerYear) {
 		this.totalSickDaysAllowedPerYear = totalSickDaysAllowedPerYear;
+	}
+	
+	public Double getDaysInLieuEarned() {
+		return daysInLieuEarned;
+	}
+
+	public void setDaysInLieuEarned(Double daysInLieuEarned) {
+		this.daysInLieuEarned = daysInLieuEarned;
+	}
+	
+	public Double getDaysInLieuUsed() {
+		return daysInLieuUsed;
+	}
+
+	public void setDaysInLieuUsed(Double daysInLieuUsed) {
+		this.daysInLieuUsed = daysInLieuUsed;
 	}
 	
 }

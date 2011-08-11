@@ -54,6 +54,8 @@ public class SimpleAdminController extends MultiActionController implements
 	public ModelAndView intro(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		System.out.println("PPP" + request.getContextPath());
+		
 		String now = (new Date()).toString();
 		System.out.println("Returning hello view with " + now);
 

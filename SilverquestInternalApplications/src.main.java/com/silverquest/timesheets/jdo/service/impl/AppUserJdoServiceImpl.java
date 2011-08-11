@@ -15,7 +15,7 @@ import com.silverquest.timesheets.jdo.service.AppUserJdoService;
 
 public class AppUserJdoServiceImpl implements AppUserJdoService{
 
-	public final static String SELECT_USERS_BY_COMPANY = "SELECT from " + ConsultantDao.class.getName() + " WHERE companyId==:companyId";
+	public final static String SELECT_USERS_BY_COMPANY = "SELECT from " + ConsultantDao.class.getName() + " WHERE clientCompanyId==:companyId";
 
 	
 	@Override

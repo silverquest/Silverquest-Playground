@@ -9,8 +9,16 @@ public class AbsenceDetailsDto {
 	private Double leaveDaysTaken;
 	private Double totalLeaveDaysAllowedPerYear;
 	private Double totalSickDaysAllowedPerYear;
+	private Double daysInLieuEarned;
+	private Double daysInLieuUsed;
 	
-	
+
+	public Double getDaysInLieuUsed() {
+		return daysInLieuUsed;
+	}
+	public void setDaysInLieuUsed(Double daysInLieuUsed) {
+		this.daysInLieuUsed = daysInLieuUsed;
+	}
 	public Double getSickDaysAccrued() {
 		return sickDaysAccrued;
 	}
@@ -46,6 +54,13 @@ public class AbsenceDetailsDto {
 	}
 	public void setTotalSickDaysAllowedPerYear(Double totalSickDaysAllowedPerYear) {
 		this.totalSickDaysAllowedPerYear = totalSickDaysAllowedPerYear;
+	}
+	
+	public Double getDaysInLieuEarned() {
+		return daysInLieuEarned;
+	}
+	public void setDaysInLieuEarned(Double daysInLieuEarned) {
+		this.daysInLieuEarned = daysInLieuEarned;
 	}
 	
 	
