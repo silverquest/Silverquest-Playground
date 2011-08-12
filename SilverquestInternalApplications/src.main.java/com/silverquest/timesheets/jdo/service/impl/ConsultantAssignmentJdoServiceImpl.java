@@ -47,6 +47,7 @@ public class ConsultantAssignmentJdoServiceImpl implements ConsultantAssignmentJ
 	/**
 	 * 
 	 */
+	@SuppressWarnings("unchecked")
 	public ConsultantAssignmentDto findCurrentConsultantContract(String userId, boolean openOnly){
 
 		PersistenceManager pm = PMF.get().getPersistenceManager();

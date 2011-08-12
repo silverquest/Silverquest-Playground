@@ -3,7 +3,6 @@ package com.silverquest.timesheets.jdo.service.impl;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import com.silverquest.timesheets.PMF;
-import com.silverquest.timesheets.dao.ConsultantAssignmentDao;
 import com.silverquest.timesheets.dao.TimeSheetDao;
 import com.silverquest.timesheets.dto.TimeSheetDto;
 import com.silverquest.timesheets.jdo.service.TimeSheetJdoService;

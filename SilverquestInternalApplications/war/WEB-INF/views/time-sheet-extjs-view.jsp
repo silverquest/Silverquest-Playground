@@ -8,13 +8,8 @@
 
     <script type="text/javascript" src="/resources/ext-4.0.2a/ext-debug.js"></script>
 
-    <script type="text/javascript" src="/resources/js/view/TimeSheetLauncher.js"></script>
+    <script type="text/javascript" src="/resources/app/app.js"></script>
     
-    <script type="Javascript">
-
-       doSomething();
-
-    </script>
     
     
 </head>

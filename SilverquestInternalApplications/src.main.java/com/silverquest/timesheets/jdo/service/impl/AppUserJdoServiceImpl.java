@@ -37,6 +37,7 @@ public class AppUserJdoServiceImpl implements AppUserJdoService{
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<AppUserDto> findAppUsersByCompanyId(String companyId) {
 		

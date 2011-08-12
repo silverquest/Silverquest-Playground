@@ -1,8 +1,6 @@
 package com.silverquest.timesheets.service.impl;
 
 import org.springframework.beans.factory.InitializingBean;
-
-import com.silverquest.timesheets.dto.CompanyDetailsDto;
 import com.silverquest.timesheets.dto.CompanyDto;
 import com.silverquest.timesheets.dto.ConsultantAssignmentDto;
 import com.silverquest.timesheets.dto.ConsultantDto;

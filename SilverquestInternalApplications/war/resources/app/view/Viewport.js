@@ -1,3 +1,3 @@
-Ext.define('AM.view.Viewport', {
+Ext.define('HelloExt.view.Viewport', {
     extend: 'Ext.container.Viewport'
 });

@@ -49,10 +49,6 @@ public class TimeSheetController extends MultiActionController implements
 			throws ServletException, IOException {
 
 		Map<String, Object> model = new HashMap<String, Object>();
-		
-		System.out.println("xxxxx");
-		
-		System.out.println("PPP" + request.getContextPath());
 
 		model = referenceData(model);
 
@@ -60,8 +56,6 @@ public class TimeSheetController extends MultiActionController implements
 		request.setAttribute("model", model);
 		
 		return new ModelAndView("time-sheet-extjs-view", model);
-
-	//	return new ModelAndView("time-sheet-view", model);
 
 	}
 
