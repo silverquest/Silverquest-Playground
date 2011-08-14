@@ -19,8 +19,8 @@ import com.silverquest.timesheets.jdo.service.ConsultantAssignmentJdoService;
 public class ConsultantAssignmentJdoServiceImpl implements ConsultantAssignmentJdoService, InitializingBean{
 
 	
-	private final static String SELECT_CONTRACT_BY_USERS = "SELECT from " + ConsultantAssignmentDao.class.getName() +  " where consultantId =: userId"; 
-	private final static String SELECT_CONTRACT_BY_USERS_OPEN = SELECT_CONTRACT_BY_USERS + " and isClosed == false";
+	private final static String SELECT_CONTRACT_BY_USERS = "SELECT from " + ConsultantAssignmentDao.class.getName() +  " WHERE consultantId==:userId"; 
+	private final static String SELECT_CONTRACT_BY_USERS_OPEN = SELECT_CONTRACT_BY_USERS;
 
 	public ConsultantAssignmentDto save(ConsultantAssignmentDto dto){
 		
@@ -48,17 +48,15 @@ public class ConsultantAssignmentJdoServiceImpl implements ConsultantAssignmentJ
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
-	public ConsultantAssignmentDto findCurrentConsultantContract(String userId, boolean openOnly){
+	public ConsultantAssignmentDto findCurrentConsultantContract(String userId){
 
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 
 		ConsultantAssignmentDao dao = null;
 		try {
 			
-			String queryStr = SELECT_CONTRACT_BY_USERS;
-			if( openOnly ){
-				queryStr = SELECT_CONTRACT_BY_USERS_OPEN;
-			}
+			String queryStr = SELECT_CONTRACT_BY_USERS_OPEN;
+
 			Query query = pm.newQuery(queryStr);
 
 		    List<ConsultantAssignmentDao> list = (List<ConsultantAssignmentDao>) query.execute(userId);

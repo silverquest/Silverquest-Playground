@@ -17,23 +17,28 @@ public class AppUserJdoServiceImpl implements AppUserJdoService{
 
 	public final static String SELECT_USERS_BY_COMPANY = "SELECT from " + ConsultantDao.class.getName() + " WHERE clientCompanyId==:companyId";
 
+	public final static String SELECT_USER_BY_ID = "SELECT from " + ConsultantDao.class.getName() + " WHERE id==:id";
 	
 	@Override
 	public AppUserDao getById(String id) {
 	
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		AppUserDao employeeDao = null;
+		AppUserDao userDao = null;
 		
 		try{
 
-			Object idInstance = pm.newObjectIdInstance( CompanyDao.class, id );
-			employeeDao = (AppUserDao) pm.getObjectById( idInstance );
+			Query q = pm.newQuery(SELECT_USER_BY_ID);
+			q.setUnique(true);
+			userDao = (AppUserDao) q.execute(id);
 			
+		}
+		catch(Exception e){
+			e.printStackTrace();
 		}
 		finally{
 			pm.close();
 		}
-		return employeeDao;	
+		return userDao;	
 		
 	}
 

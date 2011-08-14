@@ -9,8 +9,14 @@ Ext.require([
              'Ext.form.*',
              'Ext.dd.*',
              'Ext.Viewport.*', 
-             'Ext.container.Viewport'
+             'Ext.container.Viewport',
+             'Ext.form.field.Number',
+             'Ext.form.field.Date',
+             'Ext.tip.QuickTipManager',
+
          ]);
+
+
 
 Ext.application({
 	name : 'HelloExt',
@@ -19,7 +25,13 @@ Ext.application({
 		Ext.create('Ext.container.Viewport', {
 			layout : 'fit',
 
-			items : [ {
+			items : [ 
+			          
+			   gridX   
+			   ,
+			   
+			   
+			   {
 				xtype : 'container',
 				height : 847,
 				region : 'center',
@@ -67,15 +79,17 @@ Ext.application({
                                     items: [
                                         {
                                             xtype: 'textfield',
-                                            fieldLabel: 'Name',
+                                            fieldLabel: 'Company Name',
                                             anchor: '100%',
-                                            style: 'margin: 5px;'
+                                            style: 'margin: 5px;',
+                                            value: companyName
                                         },
                                         {
                                             xtype: 'textarea',
                                             anchor: '100%',
                                             fieldLabel: 'Address',
-                                            style: 'margin: 5px;'
+                                            style: 'margin: 5px;',
+                                            value: companyAddress
                                         }
                                     ]
                                 },
@@ -90,13 +104,15 @@ Ext.application({
                                             xtype: 'textfield',
                                             fieldLabel: 'Name of Consultant',
                                             anchor: '100%',
-                                            style: 'margin: 5px;'
+                                            style: 'margin: 5px;',
+                                            value: consultantFName + ' ' + consultantLName
                                         },
                                         {
                                             xtype: 'textfield',
                                             fieldLabel: 'Signature',
                                             anchor: '100%',
-                                            style: 'margin: 5px;'
+                                            style: 'margin: 5px;',
+                                      
                                         }
                                     ]
                                 }
@@ -104,6 +120,9 @@ Ext.application({
                         }
                     ]
                 },
+               //////////////
+                
+                ////////
                 {
                     xtype: 'panel',
                     title: 'Client Confirmation',

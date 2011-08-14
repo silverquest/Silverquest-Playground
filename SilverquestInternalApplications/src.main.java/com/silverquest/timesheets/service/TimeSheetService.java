@@ -1,7 +1,7 @@
 package com.silverquest.timesheets.service;
 
+import com.silverquest.timesheets.dto.TimeSheetTemplate;
 import com.silverquest.timesheets.jdo.service.TimeSheetJdoService;
-import com.silverquest.timesheets.service.impl.TimeSheetTemplate;
 
 public interface TimeSheetService extends TimeSheetJdoService{
 

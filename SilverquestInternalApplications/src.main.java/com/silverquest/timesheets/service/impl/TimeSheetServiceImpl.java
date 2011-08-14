@@ -5,6 +5,7 @@ import com.silverquest.timesheets.dto.CompanyDto;
 import com.silverquest.timesheets.dto.ConsultantAssignmentDto;
 import com.silverquest.timesheets.dto.ConsultantDto;
 import com.silverquest.timesheets.dto.TimeSheetDto;
+import com.silverquest.timesheets.dto.TimeSheetTemplate;
 import com.silverquest.timesheets.jdo.service.impl.TimeSheetJdoServiceImpl;
 import com.silverquest.timesheets.service.CompanyService;
 import com.silverquest.timesheets.service.ConsultantService;

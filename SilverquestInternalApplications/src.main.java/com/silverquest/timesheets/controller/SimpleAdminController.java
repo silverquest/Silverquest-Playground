@@ -50,7 +50,7 @@ public class SimpleAdminController extends MultiActionController implements
 	private TimeSheetService timeSheetService;
 
 
-	@RequestMapping("/simple-admin/intro")
+	@RequestMapping("/simple-admin/intro.htm")
 	public ModelAndView intro(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 

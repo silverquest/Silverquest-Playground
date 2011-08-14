@@ -35,7 +35,14 @@
 	
 	<bean id="consultantAssignmentJdoService" class="com.silverquest.timesheets.jdo.service.impl.ConsultantAssignmentJdoServiceImpl"/>
 	
-	<bean id="consultantAssignmentService" class="com.silverquest.timesheets.service.impl.ConsultantAssignmentServiceImpl" parent="consultantAssignmentJdoService"/>
+	<bean id="consultantAssignmentService" class="com.silverquest.timesheets.service.impl.ConsultantAssignmentServiceImpl" parent="consultantAssignmentJdoService">
+	  <property name="companyService">
+	    <ref bean="companyService"/>
+	  </property>
+	  <property name="appUserService">
+	    <ref bean="appUserService"/>
+	  </property>
+	</bean>
 	
 	
 	<bean id="companyService"
