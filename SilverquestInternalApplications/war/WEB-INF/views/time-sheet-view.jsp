@@ -1,16 +1,9 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ page isELIgnored="false"%>
-
-
-
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <html>
 <head>
-  <link rel="stylesheet" href="/style.css" type="text/css"></link>
+  	<link rel="stylesheet" href="/style.css" type="text/css"></link>
 </head>
 <body>
 	<h1>Time Sheets Screen</h1>
@@ -50,9 +43,7 @@
 					<th>Hours</th>
 					<th>Portion of day</th>
 				</tr>
-
-				<c:forEach items="${model.timeSheetEntries}" var="i"
-					varStatus="itemsRow">
+				<c:forEach items="${model.timeSheetEntries}" var="i" varStatus="itemsRow">
 					<tr>
 						<td><input type="text"
 							name="timeSheetEntries[${itemsRow.index}].date" /></td>
@@ -69,5 +60,6 @@
 		</form>
 	</div>
 
+	<%@ include file="userdetails.jsp" %>
 </body>
 </html>
